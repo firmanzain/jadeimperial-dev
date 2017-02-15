@@ -36,4 +36,24 @@ class Mycustom_controller extends CI_Controller {
         }
     }
 
+    public function analisa(){
+        $filename = "ANALISA".date('dmY').".xls";
+        header("Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+        header("Expires: 0");
+        header("Cache-Control:  must-revalidate, post-check=0, pre-check=0");
+        header("Content-disposition: attachment; filename=".$filename);
+
+        $this->load->view('analisa');
+    }
+
+    public function pegawai(){
+        $filename = "ANALISA".date('dmY').".xls";
+        header("Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+        header("Expires: 0");
+        header("Cache-Control:  must-revalidate, post-check=0, pre-check=0");
+        header("Content-disposition: attachment; filename=".$filename);
+
+        $this->load->view('pegawai');
+    }
+
 }
