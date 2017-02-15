@@ -1,0 +1,18 @@
+02/02/2017
+
+- Gaji Resign diuangkan 
+(Done) Pembatalan Approval (06/02/2017)
+- Bonus Baru 
+
+03/02/2017
+
+(Done) Riwayat Gaji kurang tunjangan, total gaji (gaji pokok + tunjangan) (08/02/2017) 
+(Done) PKWT di master karyawan dihilangkan (06/02/2017)
+(Done) History Data Pajak (06/02/2017)
+(Done) History SP di riwayat karyawan (06/02/2017)
+- Master BPJS ada tambah data 
+(Done) T3 dimasukkan ke data karyawan (06/02/2017)
+- Input Omzet standart untuk bonus baru 
+- Report Analisa data karyawan 
+(Done) Tunjangan diganti Tunjangan Lain (06/02/2017)
+

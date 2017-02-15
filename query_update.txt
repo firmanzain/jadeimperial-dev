@@ -1,0 +1,187 @@
+UPDATE `submenu` SET `nama_sub` = 'Master Tunjangan Lain' WHERE `id_sub` = '46'; 
+UPDATE `submenu` SET `nama_sub` = 'Tunjangan Lain Karyawan' WHERE `id_sub` = '48'; 
+UPDATE `submenu` SET `nama_sub` = 'Aprove Tunjangan Lain' WHERE `id_sub` = '37'; 
+ALTER TABLE `tab_master_bonus` ADD COLUMN `tarif_t3` INT DEFAULT 0 NULL AFTER `persentase`;
+UPDATE `submenu` SET `mainmenu_idmenu` = '0' WHERE `id_sub` = '51'; 
+CREATE TABLE `tab_history_status_pajak` ( PRIMARY KEY(`id`) )ENGINE=INNODB COLLATE = latin1_swedish_ci COMMENT = '' SELECT `id`, `nik`, `id_pajak`, `entry_user`, `entry_date` FROM `tab_status_pajak`;
+
+=====> DONE 06/02/2017
+
+UPDATE `tab_history_kontrak_kerja` SET `tanggal_masuk` = '2017-02-01' WHERE `id` = '500';
+UPDATE `tab_kontrak_kerja` SET `tanggal_masuk` = '2017-02-01' WHERE `id` = '122'; 
+UPDATE `tab_kontrak_kerja` SET `tanggal_masuk` = '2017-02-01' WHERE `id` = '123'; 
+UPDATE `tab_history_kontrak_kerja` SET `tanggal_masuk` = '2017-02-01' WHERE `id` = '502'; 
+ALTER TABLE `tab_gaji_casual_new` ADD COLUMN `uang_makan_real` FLOAT DEFAULT 6000 NULL AFTER `gaji_casual`;
+
+=====> DONE 06/02/2017
+
+UPDATE `tab_master_dp` SET `saldo_cuti_awal` = '11.98' , `saldo_dp` = '9' , `saldo_cuti` = '11.98' WHERE `id` = '784';
+UPDATE `tab_master_dp` SET `saldo_cuti_awal` = '12' WHERE `id` = '685';
+UPDATE `tab_kontrak_kerja` SET `status_kerja` = 'Kontrak 2' WHERE `id` = '22'; 
+UPDATE `tab_history_kontrak_kerja` SET `status_kerja` = 'Kontrak 2' WHERE `id` = '471';
+UPDATE `tab_history_kontrak_kerja` SET `gaji_pokok` = '0' WHERE `id` = '112';
+UPDATE `tab_kontrak_kerja` SET `gaji_pokok` = '0' WHERE `id` = '8'; 
+
+=====> DONE 06/02/2017
+
+DELETE FROM `tab_history_kontrak_kerja` WHERE `id` = '179'; 
+DELETE FROM `tab_history_kontrak_kerja` WHERE `id` = '234';
+UPDATE `tab_master_dp` SET `saldo_cuti` = '12' WHERE `id` = '625'; 
+UPDATE `tab_master_dp` SET `saldo_cuti_awal` = '12' WHERE `id` = '625'; 
+UPDATE `tab_master_dp` SET `saldo_cuti_awal` = '12' , `saldo_cuti` = '12' WHERE `id` = '724'; 
+
+=====> DONE 06/02/2017
+
+UPDATE `tab_history_kontrak_kerja` SET `tanggal_resign` = '2016-12-31' WHERE `id` = '132';
+DELETE FROM `tab_history_kontrak_kerja` WHERE `id` = '128'; 
+DELETE FROM `tab_history_kontrak_kerja` WHERE `id` = '336'; 
+DELETE FROM `tab_history_kontrak_kerja` WHERE `id` = '473'; 
+UPDATE `tab_history_kontrak_kerja` SET `tanggal_resign` = '2017-09-30' WHERE `id` = '333';
+UPDATE `tab_kontrak_kerja` SET `status_kerja` = 'Kontrak 2' , `tanggal_masuk` = '2016-10-01' , `tanggal_resign` = '2017-09-30' WHERE `id` = '24';
+UPDATE `tab_master_dp` SET `saldo_cuti_awal` = '11' , `saldo_cuti` = '11' WHERE `id` = '786';
+DELETE FROM `tab_history_kontrak_kerja` WHERE `id` = '128'; 
+DELETE FROM `tab_history_kontrak_kerja` WHERE `id` = '336'; 
+DELETE FROM `tab_history_kontrak_kerja` WHERE `id` = '473'; 
+UPDATE `tab_history_kontrak_kerja` SET `tanggal_resign` = '2017-09-30' WHERE `id` = '333';
+UPDATE `tab_kontrak_kerja` SET `status_kerja` = 'Kontrak 2' , `tanggal_masuk` = '2016-10-01' , `tanggal_resign` = '2017-09-30' WHERE `id` = '24';
+UPDATE `tab_master_dp` SET `saldo_cuti_awal` = '11' , `saldo_cuti` = '11' WHERE `id` = '786';
+UPDATE `tab_history_kontrak_kerja` SET `tanggal_resign` = '2016-12-31' WHERE `id` = '159';
+UPDATE `tab_history_kontrak_kerja` SET `tanggal_resign` = '2016-12-31' WHERE `id` = '164';
+DELETE FROM `tab_history_kontrak_kerja` WHERE `id` = '312'; 
+UPDATE `tab_history_kontrak_kerja` SET `tanggal_resign` = '2016-12-31' WHERE `id` = '185'; 
+UPDATE `tab_history_kontrak_kerja` SET `status_kerja` = 'Kontrak 2' WHERE `id` = '185';
+UPDATE `tab_history_kontrak_kerja` SET `tanggal_resign` = '2016-12-31' WHERE `id` = '306'; 
+DELETE FROM `tab_history_kontrak_kerja` WHERE `id` = '182'; 
+DELETE FROM `tab_history_kontrak_kerja` WHERE `id` = '305'; 
+
+=====> DONE 06/02/2017
+
+#BPJS
+CREATE TABLE `tab_master_bpjs_detail`( `id_bpjs_detail` INT NOT NULL AUTO_INCREMENT, `id_bpjs` INT NOT NULL, `nama_potongan` VARCHAR(20) NOT NULL, `tujuan_potongan` TINYINT(1) NOT NULL DEFAULT 0 COMMENT '0 tidak ada, 1 perusahaan, 2 karyawan', `nilai_potongan` FLOAT NOT NULL DEFAULT 0, `status_potongan` TINYINT(1) NOT NULL DEFAULT 0 COMMENT '0 tidak aktif, 1 aktif', `entry_date` TIMESTAMP NOT NULL, `entry_user` VARCHAR(20), PRIMARY KEY (`id_bpjs_detail`) ) ENGINE=INNODB;
+ALTER TABLE `tab_master_bpjs` DROP COLUMN `jkk`, DROP COLUMN `jht_1`, DROP COLUMN `jht_2`, DROP COLUMN `jkm`, DROP COLUMN `jpk_1`, DROP COLUMN `jpk_2`, DROP COLUMN `potongan1`, DROP COLUMN `potongan2`, CHANGE `bpjs` `nama_bpjs` VARCHAR(30) CHARSET latin1 COLLATE latin1_swedish_ci NOT NULL, ADD COLUMN `status_bpjs` TINYINT(1) DEFAULT 0 NOT NULL COMMENT '0 tidak aktif, 1 aktif' AFTER `nama_bpjs`;
+UPDATE `tab_master_bpjs` SET `status_bpjs` = '1' WHERE `id_bpjs` = '1'; 
+UPDATE `tab_master_bpjs` SET `status_bpjs` = '1' WHERE `id_bpjs` = '2'; 
+UPDATE `tab_master_bpjs` SET `status_bpjs` = '1' WHERE `id_bpjs` = '3'; 
+ALTER TABLE `tab_master_bpjs_detail` CHANGE `tujuan_potongan` `tujuan_potongan` TINYINT(1) DEFAULT 0 NOT NULL COMMENT '0 semua, 1 perusahaan, 2 karyawan';
+ALTER TABLE `hrd-jadeimperial`.`tab_gaji_karyawan_new` ADD COLUMN `potongan_bpjs_nama` TEXT NULL AFTER `bea_jpk`, ADD COLUMN `potongan_bpjs` TEXT NULL AFTER `potongan_bpjs_nama`; 
+ALTER TABLE `hrd-jadeimperial`.`tab_master_bpjs` ADD COLUMN `tgl_bpjs` DATE NULL AFTER `nama_bpjs`; 
+ALTER TABLE `hrd-jadeimperial`.`tab_master_bpjs` CHANGE `tgl_bpjs` `tgl_bpjs` INT NULL; 
+ALTER TABLE `hrd-jadeimperial`.`tab_master_bpjs` CHANGE `tgl_bpjs` `tgl_bpjs` VARCHAR(20) NULL; 
+ALTER TABLE `hrd-jadeimperial`.`tab_gaji_karyawan_new` CHANGE `potongan_bpjs_nama` `potongan_bpjs_id` TEXT CHARSET latin1 COLLATE latin1_swedish_ci NULL, ADD COLUMN `potongan_bpjs_id_detail` TEXT NULL AFTER `potongan_bpjs_id`; 
+ALTER TABLE `hrd-jadeimperial`.`tab_gaji_karyawan_new` ADD COLUMN `total_potongan_bpjs` FLOAT NULL AFTER `potongan_bpjs`; 
+#END BPJS
+
+#BONUS
+ALTER TABLE `tab_master_bonus` ADD COLUMN `tipe_bonus` INT(1) DEFAULT 0 NOT NULL COMMENT '0 Bonus Lama, 1 Bonus Baru' AFTER `nik`;
+ALTER TABLE `tab_master_bonus` CHANGE `tarif_t3` `tarif_t3` INT(11) DEFAULT 0 NOT NULL, ADD COLUMN `nominal2` FLOAT DEFAULT 0 NOT NULL AFTER `tarif_t3`; 
+UPDATE `submenu` SET `nama_sub` = 'BPJS' WHERE `id_sub` = '45'; 
+UPDATE `submenu` SET `nama_sub` = 'Tunjangan Lain' WHERE `id_sub` = '46'; 
+INSERT INTO `submenu` (`nama_sub`, `mainmenu_idmenu`, `active_sub`, `icon_class`, `link_sub`, `sub_akses`) VALUES ('Omset Standart', '2', '', '', 'OmsetStandart', ''); 
+INSERT INTO `tab_akses_submenu` (`id_sub_menu`, `id_level`, `c`, `r`, `u`, `d`) VALUES ('72', '1', '1', '1', '1', '1'); 
+INSERT INTO `tab_akses_submenu` (`id_sub_menu`, `id_level`, `c`, `r`, `u`, `d`) VALUES ('72', '2', '1', '1', '1', '1'); 
+INSERT INTO `tab_akses_submenu` (`id_sub_menu`, `id_level`, `c`, `r`, `u`, `d`) VALUES ('72', '3', '1', '1', '1', '1'); 
+INSERT INTO `tab_akses_submenu` (`id_sub_menu`, `id_level`, `c`, `r`, `u`, `d`) VALUES ('72', '4', '1', '1', '1', '1'); 
+CREATE TABLE `tab_omset_standart`( `id_omset` INT NOT NULL AUTO_INCREMENT, `cabang` INT NOT NULL, `nominal_omset` FLOAT NOT NULL DEFAULT 0, `entry_date` TIMESTAMP NOT NULL, `entry_user` VARCHAR(20), PRIMARY KEY (`id_omset`) ) ENGINE=INNODB;
+INSERT INTO `tab_omset_standart` (`cabang`) VALUES ('1'); 
+INSERT INTO `tab_omset_standart` (`cabang`) VALUES ('2'); 
+INSERT INTO `tab_omset_standart` (`cabang`) VALUES ('3');
+UPDATE `submenu` SET `nama_sub` = 'Bonus Karyawan Lama' WHERE `id_sub` = '24';
+ALTER TABLE `mainmenu` ADD COLUMN `index_menu` INT DEFAULT 0 NOT NULL AFTER `menu_akses`;
+ALTER TABLE `mainmenu` CHANGE `index_menu` `index_menu` INT(11) DEFAULT 0 NOT NULL AFTER `idmenu`;
+UPDATE `mainmenu` SET `index_menu` = '1' WHERE `seq` = '1'; 
+UPDATE `mainmenu` SET `index_menu` = '2' WHERE `seq` = '2'; 
+UPDATE `mainmenu` SET `index_menu` = '4' WHERE `seq` = '3'; 
+UPDATE `mainmenu` SET `index_menu` = '8' WHERE `seq` = '5'; 
+UPDATE `mainmenu` SET `index_menu` = '7' WHERE `seq` = '6'; 
+UPDATE `mainmenu` SET `index_menu` = '6' WHERE `seq` = '7'; 
+UPDATE `mainmenu` SET `index_menu` = '5' WHERE `seq` = '8'; 
+UPDATE `mainmenu` SET `index_menu` = '3' WHERE `seq` = '9'; 
+UPDATE `mainmenu` SET `index_menu` = '9' WHERE `seq` = '11';
+ALTER TABLE `submenu` ADD COLUMN `index_menu` INT DEFAULT 0 NOT NULL AFTER `id_sub`;
+UPDATE `submenu` SET `index_menu` = '1' WHERE `id_sub` = '1'; 
+UPDATE `submenu` SET `index_menu` = '2' WHERE `id_sub` = '2'; 
+UPDATE `submenu` SET `index_menu` = '3' WHERE `id_sub` = '31'; 
+UPDATE `submenu` SET `index_menu` = '4' WHERE `id_sub` = '50'; 
+UPDATE `submenu` SET `index_menu` = '5' WHERE `id_sub` = '45'; 
+UPDATE `submenu` SET `index_menu` = '6' WHERE `id_sub` = '49'; 
+UPDATE `submenu` SET `index_menu` = '7' WHERE `id_sub` = '3'; 
+UPDATE `submenu` SET `index_menu` = '8' WHERE `id_sub` = '4'; 
+UPDATE `submenu` SET `index_menu` = '9' WHERE `id_sub` = '5'; 
+UPDATE `submenu` SET `index_menu` = '10' WHERE `id_sub` = '28'; 
+UPDATE `submenu` SET `index_menu` = '11' WHERE `id_sub` = '8'; 
+UPDATE `submenu` SET `index_menu` = '12' WHERE `id_sub` = '44'; 
+UPDATE `submenu` SET `index_menu` = '13' WHERE `id_sub` = '46'; 
+UPDATE `submenu` SET `index_menu` = '14' WHERE `id_sub` = '72';
+UPDATE `submenu` SET `index_menu` = '1' WHERE `id_sub` = '34'; 
+UPDATE `submenu` SET `index_menu` = '2' WHERE `id_sub` = '35';
+UPDATE `submenu` SET `index_menu` = '1' WHERE `id_sub` = '26'; 
+UPDATE `submenu` SET `index_menu` = '2' WHERE `id_sub` = '27'; 
+UPDATE `submenu` SET `index_menu` = '3' WHERE `id_sub` = '29';
+UPDATE `submenu` SET `index_menu` = '1' WHERE `id_sub` = '32'; 
+UPDATE `submenu` SET `index_menu` = '2' WHERE `id_sub` = '25'; 
+UPDATE `submenu` SET `index_menu` = '3' WHERE `id_sub` = '22'; 
+UPDATE `submenu` SET `index_menu` = '4' WHERE `id_sub` = '42'; 
+UPDATE `submenu` SET `index_menu` = '6' WHERE `id_sub` = '48'; 
+UPDATE `submenu` SET `index_menu` = '5' WHERE `id_sub` = '7'; 
+UPDATE `submenu` SET `index_menu` = '1' WHERE `id_sub` = '10'; 
+UPDATE `submenu` SET `index_menu` = '2' WHERE `id_sub` = '9'; 
+UPDATE `submenu` SET `index_menu` = '3' WHERE `id_sub` = '21'; 
+UPDATE `submenu` SET `index_menu` = '4' WHERE `id_sub` = '43'; 
+UPDATE `submenu` SET `index_menu` = '5' WHERE `id_sub` = '47'; 
+UPDATE `submenu` SET `index_menu` = '6' WHERE `id_sub` = '52'; 
+UPDATE `submenu` SET `index_menu` = '7' WHERE `id_sub` = '24'; 
+UPDATE `submenu` SET `index_menu` = '9' WHERE `id_sub` = '61'; 
+UPDATE `submenu` SET `index_menu` = '10' WHERE `id_sub` = '71'; 
+UPDATE `submenu` SET `index_menu` = '11' WHERE `id_sub` = '23'; 
+UPDATE `submenu` SET `index_menu` = '12' WHERE `id_sub` = '65'; 
+UPDATE `submenu` SET `index_menu` = '13' WHERE `id_sub` = '68'; 
+UPDATE `submenu` SET `index_menu` = '14' WHERE `id_sub` = '56'; 
+UPDATE `submenu` SET `index_menu` = '1' WHERE `id_sub` = '40'; 
+UPDATE `submenu` SET `index_menu` = '2' WHERE `id_sub` = '55'; 
+UPDATE `submenu` SET `index_menu` = '3' WHERE `id_sub` = '39'; 
+UPDATE `submenu` SET `index_menu` = '4' WHERE `id_sub` = '53'; 
+UPDATE `submenu` SET `index_menu` = '6' WHERE `id_sub` = '37'; 
+UPDATE `submenu` SET `index_menu` = '7' , `nama_sub` = 'Aprove Bonus Lama Karyawan' WHERE `id_sub` = '38'; 
+UPDATE `submenu` SET `index_menu` = '9' WHERE `id_sub` = '36'; 
+UPDATE `submenu` SET `index_menu` = '10' WHERE `id_sub` = '67'; 
+UPDATE `submenu` SET `index_menu` = '11' WHERE `id_sub` = '69'; 
+UPDATE `submenu` SET `index_menu` = '12' WHERE `id_sub` = '58'; 
+UPDATE `submenu` SET `index_menu` = '1' WHERE `id_sub` = '19'; 
+UPDATE `submenu` SET `index_menu` = '2' WHERE `id_sub` = '20'; 
+UPDATE `submenu` SET `index_menu` = '3' WHERE `id_sub` = '18'; 
+UPDATE `submenu` SET `index_menu` = '3' WHERE `id_sub` = '64'; 
+UPDATE `submenu` SET `index_menu` = '4' WHERE `id_sub` = '18'; 
+UPDATE `submenu` SET `index_menu` = '5' WHERE `id_sub` = '62'; 
+UPDATE `submenu` SET `index_menu` = '6' WHERE `id_sub` = '11'; 
+UPDATE `submenu` SET `index_menu` = '7' WHERE `id_sub` = '13'; 
+UPDATE `submenu` SET `index_menu` = '8' WHERE `id_sub` = '54'; 
+UPDATE `submenu` SET `index_menu` = '9' , `nama_sub` = 'Rekap Bonus Lama' WHERE `id_sub` = '16'; 
+UPDATE `submenu` SET `index_menu` = '11' WHERE `id_sub` = '15'; 
+UPDATE `submenu` SET `index_menu` = '12' WHERE `id_sub` = '70'; 
+UPDATE `submenu` SET `index_menu` = '13' WHERE `id_sub` = '57'; 
+INSERT INTO `submenu` (`index_menu`, `nama_sub`, `mainmenu_idmenu`, `active_sub`, `icon_class`, `link_sub`, `sub_akses`) VALUES ('8', 'Bonus Karyawan Baru', '5', '', '', 'BonusBaru', '');
+INSERT INTO `tab_akses_submenu` (`id_sub_menu`, `id_level`, `c`, `r`, `u`, `d`) VALUES ('73', '1', '1', '1', '1', '1'); 
+INSERT INTO `tab_akses_submenu` (`id_sub_menu`, `id_level`, `c`, `r`, `u`, `d`) VALUES ('73', '2', '1', '1', '1', '1'); 
+INSERT INTO `tab_akses_submenu` (`id_sub_menu`, `id_level`, `c`, `r`, `u`, `d`) VALUES ('73', '3', '1', '1', '1', '1'); 
+INSERT INTO `tab_akses_submenu` (`id_sub_menu`, `id_level`, `c`, `r`, `u`, `d`) VALUES ('73', '4', '1', '1', '1', '1'); 
+CREATE TABLE `tab_omset_baru`( `id_omset` INT NOT NULL, `cabang` INT NOT NULL, `omset` FLOAT NOT NULL DEFAULT 0, `approved` TINYINT(1) NOT NULL DEFAULT 0 COMMENT '0 Belum, 1 Sudah', `keterangan` TEXT NOT NULL, `entry_date` TIMESTAMP NOT NULL, `entry_user` VARCHAR(20), PRIMARY KEY (`id_omset`) ) ENGINE=INNODB;
+ALTER TABLE `tab_omset_baru` ADD COLUMN `omset_standart` FLOAT DEFAULT 0 NOT NULL AFTER `cabang`, CHANGE `omset` `omset_real` FLOAT DEFAULT 0 NOT NULL, ADD COLUMN `bulan_bonus` DATE NOT NULL AFTER `omset_real`; 
+CREATE TABLE `tab_bonus_karyawan_baru`( `id_bonus` INT NOT NULL AUTO_INCREMENT, `nik` VARCHAR(30) NOT NULL, `bonus_standart` FLOAT NOT NULL DEFAULT 0, `bonus_real` FLOAT NOT NULL DEFAULT 0, `total_kembali` FLOAT NOT NULL DEFAULT 0, `total_diterima` FLOAT NOT NULL DEFAULT 0, `total_bulat` FLOAT NOT NULL DEFAULT 0, `entry_date` TIMESTAMP NOT NULL, `entry_user` VARCHAR(20), PRIMARY KEY (`id_bonus`) ) ENGINE=INNODB; 
+ALTER TABLE `tab_bonus_karyawan_baru` CHANGE `total_bulat` `total_bulat_diterima` FLOAT DEFAULT 0 NOT NULL; 
+ALTER TABLE `tab_bonus_karyawan_baru` ADD COLUMN `omset` INT NOT NULL AFTER `nik`; 
+ALTER TABLE `tab_omset_baru` CHANGE `id_omset` `id_omset` INT(11) NOT NULL AUTO_INCREMENT; 
+ALTER TABLE `tab_bonus_karyawan_baru` ADD COLUMN `approved` TINYINT DEFAULT 0 NOT NULL AFTER `total_bulat_diterima`, ADD COLUMN `keterangan` TEXT NULL AFTER `approved`; 
+INSERT INTO `submenu` (`index_menu`, `nama_sub`, `mainmenu_idmenu`, `active_sub`, `icon_class`, `link_sub`, `sub_akses`) VALUES ('8', 'Aprove Bonus Karyawan Baru', '8', '', '', 'Aprov/BonusBaru', ''); 
+UPDATE `submenu` SET `nama_sub` = 'Aprove Bonus Karyawan Lama' WHERE `id_sub` = '38'; 
+INSERT INTO `tab_akses_submenu` (`id_sub_menu`, `id_level`, `c`, `r`, `u`, `d`) VALUES ('74', '1', '1', '1', '1', '1'); 
+INSERT INTO `tab_akses_submenu` (`id_sub_menu`, `id_level`, `c`, `r`, `u`, `d`) VALUES ('74', '2', '1', '1', '1', '1'); 
+INSERT INTO `tab_akses_submenu` (`id_sub_menu`, `id_level`) VALUES ('74', '3'); 
+INSERT INTO `tab_akses_submenu` (`id_sub_menu`, `id_level`, `c`, `r`, `u`, `d`) VALUES ('74', '1', '1', '1', '1', '1'); 
+UPDATE `tab_akses_submenu` SET `id_level` = '4' WHERE `id` = '265'; 
+UPDATE `submenu` SET `nama_sub` = 'Rekap Bonus Karyawan Lama' WHERE `id_sub` = '16'; 
+INSERT INTO `submenu` (`index_menu`, `nama_sub`, `mainmenu_idmenu`, `active_sub`, `icon_class`, `link_sub`, `sub_akses`) VALUES ('10', 'Rekap Bonus Karyawan Baru', '6', '', '', 'Rekap/BonusBaru', '');
+INSERT INTO `tab_akses_submenu` (`id_sub_menu`, `id_level`, `c`, `r`, `u`, `d`) VALUES ('75', '1', '1', '1', '1', '1'); 
+INSERT INTO `tab_akses_submenu` (`id_sub_menu`, `id_level`, `c`, `r`, `u`, `d`) VALUES ('75', '2', '1', '1', '1', '1'); 
+INSERT INTO `tab_akses_submenu` (`id_sub_menu`, `id_level`, `c`, `r`, `u`, `d`) VALUES ('75', '3', '1', '1', '1', '1'); 
+INSERT INTO `tab_akses_submenu` (`id_sub_menu`, `id_level`, `c`, `r`, `u`, `d`) VALUES ('75', '4', '1', '1', '1', '1'); 
+#END BONUS
